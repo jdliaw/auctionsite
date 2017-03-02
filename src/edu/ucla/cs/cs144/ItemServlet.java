@@ -51,6 +51,21 @@ public class ItemServlet extends HttpServlet implements Servlet {
     }
     request.setAttribute("categories", categories);
 
+    String location = MyParser.getElementTextByTagNameNR(root, "Location");
+    request.setAttribute("location", location);
+    String currently = MyParser.getElementTextByTagNameNR(root, "Currently");
+    request.setAttribute("currently", currently);
+    String buyPrice = MyParser.getElementTextByTagNameNR(root, "Buy_Price");
+    request.setAttribute("buy-now", buyPrice);
+    String firstBid = MyParser.getElementTextByTagNameNR(root, "First_Bid");
+    request.setAttribute("first-bid", firstBid);
+    String nBids = MyParser.getElementTextByTagNameNR(root, "Number_of_Bids");
+    request.setAttribute("num-bids", nBids);
+    String start = MyParser.getElementTextByTagNameNR(root, "Started");
+    request.setAttribute("start", start);
+    String end = MyParser.getElementTextByTagNameNR(root, "Ends");
+    request.setAttribute("end", end);
+
     request.getRequestDispatcher("/item.jsp").forward(request, response);
   }
 }
