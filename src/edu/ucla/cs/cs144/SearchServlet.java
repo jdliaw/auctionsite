@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 public class SearchServlet extends HttpServlet implements Servlet {
 
     public static final int NUM_RESULTS_TO_DISPLAY = 20;
+    public static final String NUM_RESULTS_TO_DISPLAY_STRING = String.valueOf(NUM_RESULTS_TO_DISPLAY);
     public SearchServlet() {}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -19,9 +20,7 @@ public class SearchServlet extends HttpServlet implements Servlet {
         // get query
         String query = request.getParameter("query");
         String numResultsToSkipString = request.getParameter("numResultsToSkip");
-        String numResultsToReturnString = request.getParameter("numResultsToReturn");
         int numResultsToSkip;
-        int numResultsToReturn;
         if(numResultsToSkipString == null) {
             numResultsToSkip = 0;
         }
@@ -29,30 +28,21 @@ public class SearchServlet extends HttpServlet implements Servlet {
             numResultsToSkip = Integer.parseInt(request.getParameter("numResultsToSkip"));
         }
 
-        if(numResultsToReturnString == null) {
-            numResultsToReturn = 0;
-        }
-        else {
-            numResultsToReturn = Integer.parseInt(request.getParameter("numResultsToReturn"));
-        }
-
         if(query == null) {
             query = "";
         }
 
-
-
-
-        SearchResult[] results = AuctionSearch.basicSearch(query, numResultsToSkip, numResultsToReturn);
+        SearchResult[] results = AuctionSearch.basicSearch(query, numResultsToSkip, NUM_RESULTS_TO_DISPLAY);
         if(results == null) {
             request.setAttribute("query", "It is a null value...");
         }
         else {
             request.setAttribute("results", results);
             request.setAttribute("query", query);
-            request.setAttribute("print", AuctionSearch.getXMLDataForItemId("1045272701"));
-        }
+            request.setAttribute("numResultsToSkip", numResultsToSkip);
 
+        }
+        request.setAttribute("numResultsToReturn", NUM_RESULTS_TO_DISPLAY_STRING);
         request.getRequestDispatcher("/search.jsp").forward(request, response);
     }
 }

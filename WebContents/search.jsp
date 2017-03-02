@@ -8,40 +8,40 @@
 
   <body>
     <form>
-      <span>Enter a search query:</span><br/>
-      <input type="text" name="query" value=${query}>
+      <span>Search query:</span>
+      <input type="text" name="query">
       <br>
       <input id="submit" type="submit" value="Search!">
-      <button onclick="skipResults()">More</button>
+      <!--<button onclick="skipResults()">More</button>-->
       <h2>Searching for: ${query}</h2>
-
+      <input name="numResultsToSkip" type="hidden" value="0">
       <table>
-        <c:forEach var="result" items="${results}">
+        <c:forEach var="res" items="${results}">
           <tr>
-            <td>${result.getItemId()}</td>
-            <td>${result.getName()}</td>
+            <td>${res.getItemId()}</td>
+            <td>${res.getName()}</td>
           </tr>
         </c:forEach>
 
       </table>
-      <br> Print: ${print} <br>
-      <input name="numResultsToSkip" type="hidden" value="0">
-      <input name="numResultsToReturn" type="hidden" value="10">
+
 
       <!--save data: http://stackoverflow.com/questions/1055308/retaining-the-submitted-jsp-form-data-->
 
     </form>
 
-    <script type="text/javascript">
-      function skipResults() {
-        var indexVal = document.getElementById("index").value;
-        var oldIndex = parseInt(indexVal);
-        var newIndex = oldIndex + 20;
-        var newIndexString = newIndex.toString();
-        document.getElementById("index").value = newIndexString;
-        console.log(document.getElementById("index").value);
-      }
-    </script>
+		<button><a id="next-k" href="search?query=test&numResultsToSkip=0">Next ${numResultsToReturn} items</a></button>
+
+
+		<script type="text/javascript">
+      var numResultsToReturn = parseInt("${numResultsToReturn}");
+			var numResultsToSkip = parseInt("${numResultsToSkip}");
+
+
+			var next_input = document.getElementById("next-k");
+      next_input.href = "search?query=${query}&numResultsToSkip=" + (numResultsToSkip + numResultsToReturn);
+			
+		</script>
   </body>
 
 
