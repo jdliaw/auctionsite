@@ -19,31 +19,35 @@ public class ItemServlet extends HttpServlet implements Servlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
   {
+    // item id passed in through URL request
     String id = request.getParameter("id");
-    Element root = null;
 
+    // get XML data using item id
     String data = AuctionSearch.getXMLDataForItemId(id);
-    // request.setAttribute("data", data);
 
+    Element root = null;
     try {
+      // parse XML string into XML document
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
       DocumentBuilder builder = factory.newDocumentBuilder();
       Document doc = builder.parse(new InputSource(new StringReader(data)));
-      // request.setAttribute("doc", doc);
       root = doc.getDocumentElement();
     }
     catch (Exception e) {
       e.printStackTrace();
     }
 
+    // get item id
     request.setAttribute("itemId", root.getAttribute("ItemID"));
 
+    // get name and description
     String name = MyParser.getElementTextByTagNameNR(root, "Name");
     request.setAttribute("name", name);
 
     String description = MyParser.getElementTextByTagNameNR(root, "Description");
     request.setAttribute("description", description);
 
+    // get categories as an array
     ArrayList<String> categories = new ArrayList<String>();
     Element[] catElem = MyParser.getElementsByTagNameNR(root, "Category");
     for (int i = 0; i < catElem.length; i++) {
@@ -51,6 +55,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
     }
     request.setAttribute("categories", categories);
 
+    // get the rest of XML elements
     String location = MyParser.getElementTextByTagNameNR(root, "Location");
     request.setAttribute("location", location);
     String currently = MyParser.getElementTextByTagNameNR(root, "Currently");
