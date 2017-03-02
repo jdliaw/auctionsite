@@ -13,7 +13,7 @@ import edu.ucla.cs.cs144.SearchResult;
 public class AuctionSearch {
 	
 	private static final String ENDPOINT_URL =
-		"http://oak.cs.ucla.edu/axis2/services/AuctionSearchService";
+		"http://localhost:1448/axis2/services/AuctionSearchService";
 	private static final String TARGET_NAMESPACE =
 		"http://cs144.cs.ucla.edu";
 	
