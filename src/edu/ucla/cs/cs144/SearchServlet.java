@@ -15,20 +15,21 @@ public class SearchServlet extends HttpServlet implements Servlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-      //set title
-      String pageTitle = "Search";
-      request.setAttribute("title", pageTitle);
+        // your codes here
+        String query = request.getParameter("query");
+        if(query == null) {
+            query = "";
+        }
 
-      //our test printing...
-      String query = request.getParameter("query");
-      request.setAttribute("title", query);
+        SearchResult[] results = AuctionSearch.basicSearch(query, 0, 20);
+        if(results == null) {
+            request.setAttribute("query", "It is a null value...");
+        }
+        else {
+            request.setAttribute("results", results);
+            request.setAttribute("query", query);
+        }
 
-      if(query != null) {
-        SearchResult[] searchResult = AuctionSearch.basicSearch(query, 0, 20);
-        request.setAttribute("print", searchResult);
-      }
-
-
-      request.getRequestDispatcher("/search.jsp").forward(request, response);
+        request.getRequestDispatcher("/search.jsp").forward(request, response);
     }
 }

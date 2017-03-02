@@ -1,22 +1,37 @@
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<head>
-  <title>
-    <%= request.getAttribute("title") %>
-  </title>
-</head>
-<body>
-  <h1>Search</h1>
-  <form>
-    <h3>Enter your query here:</h3>
-    <input type="text" name="query" />
-    <input type="submit" value="Submit" />
-  </form>
+  <html>
 
-  <p>
-    <%= request.getAttribute("print") %>
-  </p>
+  <head>
+    <title>Search Results</title>
+  </head>
 
-</body>
+  <body>
+    <form action="/eBay/search" method="GET">
+      <div>
+        <div>
+          <span>Enter a search query:</span><br/>
+          <input type="text" name="query">
+          <br>
+          <input id="submit" type="submit">
+          <h2>Searching for: ${query}</h2>
+        </div>
+      </div>
 
-</html>
+      <table>
+        <c:forEach var="result" items="${results}">
+          <tr>
+            <td>${result.getItemId()}</td>
+            <td>${result.getName()}</td>
+          </tr>
+        </c:forEach>
+
+      </table>
+      <br>
+
+
+
+    </form>
+  </body>
+
+  </html>
