@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <form action="/eBay/search" method="GET">
+    <form>
       <div>
         <div>
           <span>Enter a search query:</span><br/>
