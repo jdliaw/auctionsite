@@ -19,7 +19,7 @@
         <c:forEach var="res" items="${results}">
           <tr>
             <td>${res.getItemId()}</td>
-            <td>${res.getName()}</td>
+            <td><a href="/eBay/item?id=${res.getItemId()}">${res.getName()}</a></td>
           </tr>
         </c:forEach>
 
