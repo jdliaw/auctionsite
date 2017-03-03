@@ -71,6 +71,21 @@ public class ItemServlet extends HttpServlet implements Servlet {
     String end = MyParser.getElementTextByTagNameNR(root, "Ends");
     request.setAttribute("end", end);
 
+    // get item lat/long for google maps
+    Element loc = MyParser.getElementByTagNameNR(root, "Location");
+    String latitude = loc.getAttribute("Latitude");
+    String longitude = loc.getAttribute("Longitude");
+    if (latitude == "" || longitude == "") {
+      request.setAttribute("latitude", 34.063509); // UCLA coordinates
+      request.setAttribute("longitude", -118.44541);
+      request.setAttribute("zoom", 2);
+    }
+    else {
+      request.setAttribute("zoom", 14);
+      request.setAttribute("latitude", latitude);
+      request.setAttribute("longitude", longitude);
+    }
+
     request.getRequestDispatcher("/item.jsp").forward(request, response);
   }
 }
