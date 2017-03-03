@@ -34,21 +34,22 @@ GoogleSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /
   var sTextboxValue = oAutoSuggestControl.textbox.value;
 
   if (sTextboxValue.length > 0) {
-    
+    //Get the query URL and open up http request
     var queryUrl = "suggest?query=" + encodeURI(sTextboxValue);
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", queryUrl);
+    //If ready, do this function (anonymous wow es6 so cool!!!)
     xmlHttp.onreadystatechange = () => {
       if (xmlHttp.readyState == 4 && xmlHttp.responseXML !== null) {
-        var aSuggestions = [];
-        var suggestions = xmlHttp.responseXML.getElementsByTagName('CompleteSuggestion');
+        var aSuggestions = [];      //this variable is the stuff that populates the dropdown
+        var suggestions = xmlHttp.responseXML.getElementsByTagName('CompleteSuggestion');     //this gets all the XML into one variable
         for (i = 0; i < suggestions.length; i++) {
-          var text = suggestions[i].childNodes[0].getAttribute("data");
+          var text = suggestions[i].childNodes[0].getAttribute("data");                       //get the data and push to our suggestions array
           aSuggestions.push(text);
         }
         console.log(aSuggestions);
 
-        oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);
+        oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);                            //was already here lol.
       }
     };
     xmlHttp.send(null);
