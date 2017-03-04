@@ -38,7 +38,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
     }
     if(root == null) {
       PrintWriter out = response.getWriter();
-      out.println("You've entered an invalid Item ID!! Please enter a valid Item ID to see the magic happen!'");
+      out.println("You've entered an invalid Item ID!! Please enter a valid Item ID to see the magic happen!");
       out.close();
       return;
     }

@@ -39,8 +39,9 @@ public class SearchServlet extends HttpServlet implements Servlet {
         }
 
         SearchResult[] results = AuctionSearch.basicSearch(query, numResultsToSkip, NUM_RESULTS_TO_DISPLAY);
-        if(results == null || results.length == 0) {
-            request.setAttribute("query", "");
+        if((results == null || results.length == 0) && query.length() != 0) {
+            request.setAttribute("emptyResult", "There are no (more) results to display.");
+            request.setAttribute("query", query);
         }
         else {
             request.setAttribute("results", results);

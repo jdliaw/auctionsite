@@ -24,6 +24,7 @@
       <input type="submit" value="Search!">
       <h2>Your query: ${query}</h2>
       <input name="numResultsToSkip" type="hidden" value="0">
+      <p>${emptyResult}</p>
       <table>
         <tr>
           <th>Item ID</th>

@@ -88,6 +88,8 @@
         </tr>
       </table>
     </div>
+
+    <a href="/eBay/search">Search for another item</a>
     <div id="map_canvas" style="width:75%; height:75%"></div>
   </body>
 
