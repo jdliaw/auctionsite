@@ -25,16 +25,22 @@ public class SearchServlet extends HttpServlet implements Servlet {
             numResultsToSkip = 0;
         }
         else {
-            numResultsToSkip = Integer.parseInt(request.getParameter("numResultsToSkip"));
+            try {
+                numResultsToSkip = Integer.parseInt(request.getParameter("numResultsToSkip"));
+            }
+            catch(NumberFormatException e) {
+                numResultsToSkip = 0;
+            }
+           
         }
 
-        if(query == null) {
+        if(query == null || query.length() == 0) {
             query = "";
         }
 
         SearchResult[] results = AuctionSearch.basicSearch(query, numResultsToSkip, NUM_RESULTS_TO_DISPLAY);
-        if(results == null) {
-            request.setAttribute("query", "It is a null value...");
+        if(results == null || results.length == 0) {
+            request.setAttribute("query", "");
         }
         else {
             request.setAttribute("results", results);

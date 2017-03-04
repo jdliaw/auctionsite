@@ -34,7 +34,6 @@ public class ProxyServlet extends HttpServlet implements Servlet {
 
 
         //Get query and encode it into a URL
-        // String query = "5?";
         String query = request.getParameter("query");
         if(query == null) {
             PrintWriter out = response.getWriter();

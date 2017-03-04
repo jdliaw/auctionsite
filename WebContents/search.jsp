@@ -11,38 +11,17 @@
         var oTextbox = new AutoSuggestControl(document.getElementById("txt1"), new GoogleSuggestions());
       }
     </script>
-    <style>
-      div.suggestions {
-          -moz-box-sizing: border-box;
-          box-sizing: border-box;
-          border: 1px solid black;
-          position: absolute; 
-      }
-
-      div.suggestions div {
-          cursor: default;
-          padding: 0px 3px;
-      }
-
-      div.suggestions div.current {
-          background-color: #3366cc;
-          color: white;
-      }
-    </style>
+    
+    <link rel="stylesheet" type="text/css" href="search.css">
 
   </head>
 
   <body>
-    Test:<p><input type="text" id="txt1" /></p>
-    
-
-<br><br>
-
     <h1>Search</h1>
     <p>Enter your query:</p>
-    <form>
-      <input type="text" name="query">
-      <input id="submit" type="submit" value="Search!">
+    <form autocomplete="off">
+      <input type="text" id="txt1" name="query">
+      <input type="submit" value="Search!">
       <h2>Results: ${query}</h2>
       <input name="numResultsToSkip" type="hidden" value="0">
       <table>

@@ -49,7 +49,7 @@ GoogleSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /
         }
         console.log(aSuggestions);
 
-        oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);                            //was already here lol.
+        oAutoSuggestControl.autosuggest(aSuggestions, false);                            //was already here lol.
       }
     };
     xmlHttp.send(null);

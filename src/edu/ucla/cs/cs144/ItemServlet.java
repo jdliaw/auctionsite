@@ -36,7 +36,12 @@ public class ItemServlet extends HttpServlet implements Servlet {
     catch (Exception e) {
       e.printStackTrace();
     }
-
+    if(root == null) {
+      PrintWriter out = response.getWriter();
+      out.println("You've entered an invalid Item ID!! Please enter a valid Item ID to see the magic happen!'");
+      out.close();
+      return;
+    }
     // get item id
     request.setAttribute("itemId", root.getAttribute("ItemID"));
 
