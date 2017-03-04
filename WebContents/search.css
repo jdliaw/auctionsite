@@ -3,6 +3,7 @@ div.suggestions {
   box-sizing: border-box;
   border: 1px solid black;
   position: absolute;
+  background: white;
 }
 
 div.suggestions div {
@@ -15,3 +16,11 @@ div.suggestions div.current {
   color: white;
 }
 
+button {
+  outline: none;
+}
+
+button a {
+  color: black;
+  text-decoration: none;
+}

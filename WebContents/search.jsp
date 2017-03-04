@@ -22,9 +22,13 @@
     <form autocomplete="off">
       <input type="text" id="txt1" name="query">
       <input type="submit" value="Search!">
-      <h2>Results: ${query}</h2>
+      <h2>Your query: ${query}</h2>
       <input name="numResultsToSkip" type="hidden" value="0">
       <table>
+        <tr>
+          <th>Item ID</th>
+            <th>Item Name</th
+          </tr>
         <c:forEach var="res" items="${results}">
           <tr>
             <td>${res.getItemId()}</td>

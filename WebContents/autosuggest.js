@@ -329,7 +329,7 @@ AutoSuggestControl.prototype.typeAhead = function (sSuggestion /*:String*/) {
     //check for support of typeahead functionality
     if (this.textbox.createTextRange || this.textbox.setSelectionRange){
         var iLen = this.textbox.value.length; 
-        // this.textbox.value = sSuggestion; 
+        this.textbox.value = sSuggestion; 
         this.selectRange(iLen, sSuggestion.length);
     }
 };
